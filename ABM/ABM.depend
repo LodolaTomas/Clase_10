@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1569246512 source:/home/alumno/Escritorio/Clase_10/ABM/funciones.c
+	"funciones.h"
+
+1569251767 /home/alumno/Escritorio/Clase_10/ABM/funciones.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1569251494 source:/home/alumno/Escritorio/Clase_10/ABM/main.c
+	"funciones.h"
+
