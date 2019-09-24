@@ -47,27 +47,38 @@ void mostrarUnAlumno(eAlumno miAlumno,eLocalidad miLocalidad)
 void mostrarListadoAlumnos(eAlumno listadoDeAlumnos[], int tam,eLocalidad listaLocalidad[],int lenLocal)
 {
     int i,j;
-
+    int index;
+    eLocalidad unaLocalidad;
     for(i=0; i<tam; i++)
     {
 
         if(listadoDeAlumnos[i].estado==OCUPADO)
         {
-
-            for(j=0; j<lenLocal; j++)
+            index  = buscarLocalidadId(listaLocalidad,lenLocal,listadoDeAlumnos[i].idLocalidad);
+            if(index!=-1)
             {
-
-                if(listadoDeAlumnos[i].idLocalidad==listaLocalidad[j].idLocalidad)
-                {
-
-                    mostrarUnAlumno(listadoDeAlumnos[i],listaLocalidad[j]);
-
-                }
-
+                mostrarUnAlumno(listadoDeAlumnos[i],listaLocalidad[index]);
             }
-
         }
     }
+}
+
+
+int buscarLocalidadId(eLocalidad listaLocalidad[],int lenLocal,int idLocalidad)
+{
+    int i;
+    int index=-1;
+
+    for(i=0; i<lenLocal; i++)
+    {
+        if(idLocalidad==listaLocalidad[i].idLocalidad)
+        {
+            index=i;
+            break;
+        }
+    }
+
+    return index;
 }
 
 void cargarListadoAlumnos(eAlumno listadoDeAlumnos[], int tam,eLocalidad listaLocalidad[],int lenLocal)

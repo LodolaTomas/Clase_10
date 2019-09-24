@@ -38,3 +38,5 @@ int eliminarAlumno(eAlumno[], int);
 int modificarAlumno(eAlumno[], int, int);
 
 int buscarAlumnoPorLegajo(eAlumno[], int, int);
+
+int buscarLocalidadId(eLocalidad[],int,int);
