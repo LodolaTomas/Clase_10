@@ -40,3 +40,11 @@ int modificarAlumno(eAlumno[], int, int);
 int buscarAlumnoPorLegajo(eAlumno[], int, int);
 
 int buscarLocalidadId(eLocalidad[],int,int);
+
+void pausa();
+void borrar();
+
+void submenu_Mostrar(eAlumno[],int,eLocalidad[],int);
+void mostrar_localidades(eLocalidad[],int);
+void mostrar_Unalocalidad(eLocalidad);
+void mostrar_porLocalidad(eAlumno[],int,eLocalidad[],int);

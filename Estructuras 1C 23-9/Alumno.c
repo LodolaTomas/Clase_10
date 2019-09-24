@@ -40,7 +40,7 @@ void hardCodearAlumnos(eAlumno listadoDeAlumnos[], int tam)
 void mostrarUnAlumno(eAlumno miAlumno,eLocalidad miLocalidad)
 {
 
-    printf("%4d %25s %8.2f %25s\n",miAlumno.legajo,miAlumno.nombre, miAlumno.promedio, miLocalidad.localidad);
+    printf("%4d %20s %15.2f %25s\n",miAlumno.legajo,miAlumno.nombre, miAlumno.promedio, miLocalidad.localidad);
 
 }
 
@@ -49,6 +49,7 @@ void mostrarListadoAlumnos(eAlumno listadoDeAlumnos[], int tam,eLocalidad listaL
     int i,j;
     int index;
     eLocalidad unaLocalidad;
+    printf("\n%4s %20s %15s %25s\n","Id","Nombre","Promedio","Localidad");
     for(i=0; i<tam; i++)
     {
 
@@ -61,6 +62,7 @@ void mostrarListadoAlumnos(eAlumno listadoDeAlumnos[], int tam,eLocalidad listaL
             }
         }
     }
+    printf("\n");
 }
 
 
@@ -112,11 +114,7 @@ eAlumno cargarAlumno(eLocalidad listaDeLocalidad[],int lenLocal)
     printf("Ingrese promedio: ");
     scanf("%f", &miAlumno.promedio);
 
-    int i;
-    for(i=0; i<lenLocal; i++)
-    {
-        printf("%d - %s - %d\n", listaDeLocalidad[i].idLocalidad,listaDeLocalidad[i].localidad,listaDeLocalidad[i].codigoPostal);
-    }
+    mostrar_localidades(listaDeLocalidad,lenLocal);
 
     printf("En que localidad vive?");
     scanf("%d", &miAlumno.idLocalidad);
@@ -255,5 +253,119 @@ int eliminarAlumno(eAlumno listadoDeAlumnos[], int tam)
     return quePaso;
 
 }
+
+submenu_Mostrar(eAlumno listadoDeAlumnos[],int lenAl,eLocalidad listadoLocalidad[],int lenLocalidad)
+{
+    int opcion;
+
+    //
+    do
+    {
+        printf("%30s\n","SUB MENU MOSTRAR");
+        printf("1. Mostrar todos los alumnos con la descripcion de su localidad\n2.Mostrar todas las localidades\n3.Mostrar por cada localidad, todos los alumnos que viven en ella\n4.Mostrar los alumnos que viven en Avellaneda\n5.Mostrar la localidad con menos habitantes\n7.Salir al menu\n");
+        printf("Elija una opcion: ");
+        scanf("%d", &opcion);
+
+        switch(opcion)
+        {
+        case 1:
+            borrar();
+                mostrarListadoAlumnos(listadoDeAlumnos, lenAl,listadoLocalidad,lenLocalidad);
+            pausa();
+            break;
+        case 2:
+            borrar();
+                mostrar_localidades(listadoLocalidad,lenLocalidad);
+            pausa();
+            break;
+        case 3:
+            borrar();
+                mostrar_porLocalidad(listadoDeAlumnos, lenAl,listadoLocalidad,lenLocalidad);
+            pausa();
+            break;
+        case 4:
+            borrar();
+            pausa();
+            break;
+        case 5:
+            borrar();
+            pausa();
+            break;
+        }
+        borrar();
+    }
+    while(opcion!=7);
+
+
+
+}
+void mostrar_porLocalidad(eAlumno listadoDeAlumnos[],int lenAl,eLocalidad listadoLocalidad[],int lenLocalidad)
+{
+
+    int i,j;
+
+    for(i=0;i<lenLocalidad;i++)
+    {
+        printf("%30s\n",listadoLocalidad[i].localidad);
+        for(j=0;j<lenAl;j++)
+        {
+
+            if(listadoLocalidad[i].idLocalidad==listadoDeAlumnos[j].idLocalidad)
+            {
+                mostrarUnAlumno(listadoDeAlumnos[j],listadoLocalidad[i]);
+
+            }
+        }
+
+        printf("\n");
+    }
+
+}
+void mostrar_Unalocalidad(eLocalidad listadoLocalidad)
+{
+    printf("%5d %20s %15d\n\n", listadoLocalidad.idLocalidad,listadoLocalidad.localidad,listadoLocalidad.codigoPostal);
+
+}
+
+void mostrar_localidades(eLocalidad listadoLocalidad[],int len)
+{
+    int i;
+    printf("\n%5s %20s %20s\n","ID","Descripcion","CodigoPostal");
+    for(i=0; i<len; i++)
+    {
+        mostrar_Unalocalidad(listadoLocalidad[i]);
+    }
+
+
+}
+void pausa()
+{
+    //if(sysOp==1)
+    //
+        system("read -p 'Press Enter to continue...' var");
+    //}
+    //if (sysOp==2)
+    //{
+    //    system("pause");
+    //}
+}
+void borrar()
+{
+    //if(sysOp==1)
+    //{
+        system("clear");
+    //}
+    //if (sysOp==2)
+    //{
+    //    system("cls");
+    //}
+}
+
+
+
+
+
+
+
 
 
